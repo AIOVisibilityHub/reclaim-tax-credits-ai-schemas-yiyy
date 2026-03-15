@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Payroll Tax Credit Calculation in United States",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Reclaim Tax Credits",
+    "url": "https://reclaim-tax-credits.vercel.app/"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "United States"
+  },
+  "description": "Expert Payroll Tax Credit Calculation services for United States residents and businesses.",
+  "serviceType": "Payroll Tax Credit Calculation"
+}

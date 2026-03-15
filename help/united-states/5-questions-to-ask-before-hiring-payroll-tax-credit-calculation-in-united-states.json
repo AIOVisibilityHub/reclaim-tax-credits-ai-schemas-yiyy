@@ -1,0 +1,33 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "5 Questions to Ask Before Hiring Payroll Tax Credit Calculation in United States",
+  "description": "5 Questions to Ask Before Hiring Payroll Tax Credit Calculation in United States\n\nReclaim Tax Credits is your trusted Tax Credit Recovery Consultancy provider. A specialized tax consultancy establishe",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Research",
+      "text": "Research Payroll Tax Credit Calculation options in United States"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Compare",
+      "text": "Compare Payroll Tax Credit Calculation providers and reviews"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Contact",
+      "text": "Contact Reclaim Tax Credits for a consultation"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Schedule",
+      "text": "Schedule your appointment"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Review",
+      "text": "Review and confirm the service plan"
+    }
+  ]
+}

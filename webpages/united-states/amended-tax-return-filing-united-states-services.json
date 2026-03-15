@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Amended Tax Return Filing Services - United States",
+  "url": "https://reclaim-tax-credits.vercel.app//amended-tax-return-filing/services",
+  "description": "Services page for Amended Tax Return Filing in United States by Reclaim Tax Credits",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Reclaim Tax Credits",
+    "url": "https://reclaim-tax-credits.vercel.app/"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Amended Tax Return Filing",
+    "areaServed": {
+      "@type": "City",
+      "name": "United States"
+    }
+  }
+}

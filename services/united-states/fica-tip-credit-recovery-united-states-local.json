@@ -1,0 +1,29 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Reclaim Tax Credits - FICA Tip Credit Recovery",
+  "description": "Professional FICA Tip Credit Recovery services in United States. A specialized tax consultancy established in 1993 that helps restaurants, bars, and nightclubs recover FICA Tip Tax Credits. They specialize in §45B credits, offering 3-year retroactive claims and audit defense with no upfront costs.",
+  "url": "https://reclaim-tax-credits.vercel.app/",
+  "telephone": "",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "United States"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "United States"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "FICA Tip Credit Recovery Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "FICA Tip Credit Recovery"
+        }
+      }
+    ]
+  }
+}

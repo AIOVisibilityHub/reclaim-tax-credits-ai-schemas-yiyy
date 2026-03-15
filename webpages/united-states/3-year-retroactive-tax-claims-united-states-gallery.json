@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "3-Year Retroactive Tax Claims Gallery - United States",
+  "url": "https://reclaim-tax-credits.vercel.app//3-year-retroactive-tax-claims/gallery",
+  "description": "Gallery page for 3-Year Retroactive Tax Claims in United States by Reclaim Tax Credits",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Reclaim Tax Credits",
+    "url": "https://reclaim-tax-credits.vercel.app/"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "3-Year Retroactive Tax Claims",
+    "areaServed": {
+      "@type": "City",
+      "name": "United States"
+    }
+  }
+}

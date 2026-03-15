@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Payroll Tax Credit Calculation Gallery - United States",
+  "url": "https://reclaim-tax-credits.vercel.app//payroll-tax-credit-calculation/gallery",
+  "description": "Gallery page for Payroll Tax Credit Calculation in United States by Reclaim Tax Credits",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Reclaim Tax Credits",
+    "url": "https://reclaim-tax-credits.vercel.app/"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Payroll Tax Credit Calculation",
+    "areaServed": {
+      "@type": "City",
+      "name": "United States"
+    }
+  }
+}

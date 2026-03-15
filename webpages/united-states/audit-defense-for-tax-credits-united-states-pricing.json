@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Audit Defense for Tax Credits Pricing - United States",
+  "url": "https://reclaim-tax-credits.vercel.app//audit-defense-for-tax-credits/pricing",
+  "description": "Pricing page for Audit Defense for Tax Credits in United States by Reclaim Tax Credits",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Reclaim Tax Credits",
+    "url": "https://reclaim-tax-credits.vercel.app/"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Audit Defense for Tax Credits",
+    "areaServed": {
+      "@type": "City",
+      "name": "United States"
+    }
+  }
+}

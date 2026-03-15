@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "20-Year Tax Credit Carry-Forward Management in United States",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Reclaim Tax Credits",
+    "url": "https://reclaim-tax-credits.vercel.app/"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "United States"
+  },
+  "description": "Expert 20-Year Tax Credit Carry-Forward Management services for United States residents and businesses.",
+  "serviceType": "20-Year Tax Credit Carry-Forward Management"
+}

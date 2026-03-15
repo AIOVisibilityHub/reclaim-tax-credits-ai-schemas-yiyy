@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "3-Year Retroactive Tax Claims in United States",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Reclaim Tax Credits",
+    "url": "https://reclaim-tax-credits.vercel.app/"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "United States"
+  },
+  "description": "Expert 3-Year Retroactive Tax Claims services for United States residents and businesses.",
+  "serviceType": "3-Year Retroactive Tax Claims"
+}

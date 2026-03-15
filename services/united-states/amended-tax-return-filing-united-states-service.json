@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Amended Tax Return Filing in United States",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Reclaim Tax Credits",
+    "url": "https://reclaim-tax-credits.vercel.app/"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "United States"
+  },
+  "description": "Expert Amended Tax Return Filing services for United States residents and businesses.",
+  "serviceType": "Amended Tax Return Filing"
+}
