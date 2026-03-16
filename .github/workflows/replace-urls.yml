@@ -15,31 +15,21 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Replace URLs with sed (safe)
+      - name: Replace URLs (bulletproof)
         run: |
-          set +e  # Don't fail if no files found
-          
-          # Find and replace in all common doc types
-          find . -type f \
-            \( -name "*.md" -o -name "*.html" -o -name "*.htm" -o -name "*.txt" \
-               -o -name "*.json" -o -name "*.yml" -o -name "*.yaml" \
-               -o -name "*.js" -o -name "*.ts" -o -name "*.css" -o -name "*.xml" \) \
-            -not -path "./.git/*" \
-            -not -path "*/node_modules/*" \
-            -not -name "*.png" -not -name "*.jpg" -not -name "*.gif" -not -name "*.zip" \
-            -exec sh -c '
-              sed -i "s|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g" "$1" && 
-              echo "Updated: $1"
-            ' sh {} \;
+          # Simple: replace in ALL text files, sed will skip binaries safely
+          grep -r --null -l --include="*.{md,html,htm,txt,json,yml,yaml,js,ts,css,xml}" \
+            'https://reclaim-tax-credits.vercel.app' . \
+            | xargs -0 -r -I {} sed -i 's|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g' {}
 
-      - name: Commit and push changes (if any)
+      - name: Commit changes (if any)
         run: |
-          if git diff --quiet HEAD; then
-            echo "No URL changes detected. Skipping commit."
-            exit 0
+          if ! git diff --quiet HEAD; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .
+            git commit -m "chore: replace reclaim-tax-credits.vercel.app with reclaimtaxcredits.com [skip ci]"
+            git push
+          else
+            echo "No changes found"
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "chore: replace reclaim-tax-credits.vercel.app with reclaimtaxcredits.com [skip ci]"
-          git push
