@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+permissions:  # ← ADD THIS
+  contents: write  # ← GIVES BOT PUSH PERMISSION
+
 jobs:
   replace-urls:
     runs-on: ubuntu-latest
