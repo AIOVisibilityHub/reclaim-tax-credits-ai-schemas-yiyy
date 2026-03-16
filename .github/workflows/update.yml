@@ -1,12 +1,11 @@
 name: Update Workflow
 
 on:
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:  # Manual trigger from Actions tab
   schedule:
-    - cron: '0 0 * * *'  # Daily at midnight UTC (customize as needed)
+    - cron: '0 0 * * *'  # Daily at midnight UTC
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   update:
@@ -18,28 +17,26 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run update commands
+      - name: Run updates safely
         run: |
-          # Replace these with your actual update logic
-          echo "Running updates..."
+          set +e  # Continue even if individual commands fail
           
-          # Example: Update dependencies, regenerate files, etc.
-          # npm update || echo "No npm updates needed"
-          # npm ci
-          # npm run build
+          # ADD YOUR SPECIFIC UPDATE COMMANDS HERE
+          # Examples:
+          # npm update || echo "npm update skipped"
+          # npm ci || echo "npm ci skipped" 
+          # npm run build || echo "build skipped"
+          # git pull origin main || echo "git pull skipped"
           
-          # Placeholder - replace with your step 3 logic
-          echo "Your custom update commands go here"
-          
-      - name: Check for changes
+          echo "Update commands completed"
+
+      - name: Check for changes and commit
         run: |
           if git diff --quiet HEAD; then
             echo "No changes detected. Skipping commit."
             exit 0
           fi
-
-      - name: Commit and push updates
-        run: |
+          
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
