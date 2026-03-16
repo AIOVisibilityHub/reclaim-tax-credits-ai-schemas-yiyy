@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
 
-permissions:  # ← ADD THIS
-  contents: write  # ← GIVES BOT PUSH PERMISSION
+permissions:
+  contents: write
 
 jobs:
   replace-urls:
@@ -15,15 +15,22 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Replace URLs with sed
+      - name: Replace URLs with sed (safe)
         run: |
+          set +e  # Don't fail if no files found
+          
+          # Find and replace in all common doc types
           find . -type f \
             \( -name "*.md" -o -name "*.html" -o -name "*.htm" -o -name "*.txt" \
                -o -name "*.json" -o -name "*.yml" -o -name "*.yaml" \
                -o -name "*.js" -o -name "*.ts" -o -name "*.css" -o -name "*.xml" \) \
             -not -path "./.git/*" \
             -not -path "*/node_modules/*" \
-            -exec sed -i 's|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g' {} +
+            -not -name "*.png" -not -name "*.jpg" -not -name "*.gif" -not -name "*.zip" \
+            -exec sh -c '
+              sed -i "s|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g" "$1" && 
+              echo "Updated: $1"
+            ' sh {} \;
 
       - name: Commit and push changes (if any)
         run: |
