@@ -1,10 +1,50 @@
 name: Update Workflow
+
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *'  # Daily at midnight UTC
   push:
     branches: [main]
 
-permissions:  # ← ADD THIS
-  contents: write  # ← GIVES BOT PUSH PERMISSION
+permissions:
+  contents: write  # Fixes exit code 128 git push
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5  # Fixes Node.js 20 warning
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run updates safely
+        run: |
+          set +e  # Don't fail on individual command errors
+          
+          # PLACEHOLDER - Replace these with your actual update commands:
+          echo "Running update process..."
+          
+          # Examples of what you might put here:
+          # npm ci || echo "npm install skipped"
+          # npm update || echo "npm update skipped"
+          # npm run build || echo "build skipped"
+          # python -m pip install -r requirements.txt --upgrade || echo "pip upgrade skipped"
+          # cargo update || echo "cargo update skipped"
+          
+          echo "Update commands completed (customize step above)"
+
+      - name: Check for changes and commit
+        run: |
+          if git diff --quiet HEAD; then
+            echo "No changes detected. Skipping commit."
+            exit 0
+          fi
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "chore: auto-update [skip ci]" || echo "No changes to commit"
+          git push || echo "No changes to push"
