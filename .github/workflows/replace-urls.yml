@@ -1,8 +1,7 @@
 name: Replace Payroll URLs
 on: workflow_dispatch
 permissions: 
-  contents: write
-  workflows: write  # ← ADD THIS LINE
+  contents: write   # ← ONLY THIS ONE
 
 jobs:
   replace:
@@ -31,5 +30,5 @@ jobs:
             git add .
             git commit -m "fix: update URLs [skip ci]"
             git push
-            echo "✅ 1515 FILES UPDATED!"
+            echo "✅ DONE"
           fi
