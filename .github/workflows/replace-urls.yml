@@ -1,4 +1,4 @@
-name: Replace Vercel URLs with New Domain
+name: Replace Payroll URLs with New Domain
 on:
   workflow_dispatch:
   push:
@@ -15,12 +15,17 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Replace URLs (bulletproof)
+      - name: Replace BOTH URLs
         run: |
-          # Simple: replace in ALL text files, sed will skip binaries safely
+          # Replace Vercel → new domain (if any left)
           grep -r --null -l --include="*.{md,html,htm,txt,json,yml,yaml,js,ts,css,xml}" \
-            'https://reclaim-tax-credits.vercel.app' . \
-            | xargs -0 -r -I {} sed -i 's|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g' {}
+            'https://reclaim-tax-credits.vercel.app' . 2>/dev/null | \
+            xargs -r -0 sed -i 's|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g'
+          
+          # Replace payroll → new domain  
+          grep -r --null -l --include="*.{md,html,htm,txt,json,yml,yaml,js,ts,css,xml}" \
+            'https://payroll.reclaimtaxcredits.com' . 2>/dev/null | \
+            xargs -r -0 sed -i 's|https://payroll.reclaimtaxcredits.com|https://reclaimtaxcredits.com|g'
 
       - name: Commit changes (if any)
         run: |
@@ -28,8 +33,9 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
-            git commit -m "chore: replace reclaim-tax-credits.vercel.app with reclaimtaxcredits.com [skip ci]"
+            git commit -m "chore: replace payroll.reclaimtaxcredits.com → reclaimtaxcredits.com [skip ci]"
             git push
+            echo "✅ URLs replaced and committed!"
           else
-            echo "No changes found"
+            echo "ℹ️ No matching URLs found"
           fi
