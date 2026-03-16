@@ -1,4 +1,4 @@
-name: Replace Payroll URLs with New Domain
+name: Replace Payroll URLs (with diagnostics)
 on:
   workflow_dispatch:
   push:
@@ -15,17 +15,28 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Replace BOTH URLs
+      - name: 🔍 DIAGNOSE - Find ALL URLs first
         run: |
-          # Replace Vercel → new domain (if any left)
-          grep -r --null -l --include="*.{md,html,htm,txt,json,yml,yaml,js,ts,css,xml}" \
-            'https://reclaim-tax-credits.vercel.app' . 2>/dev/null | \
-            xargs -r -0 sed -i 's|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g'
+          echo "=== SCANNING FOR OLD URLs ==="
+          # Show ALL files that MIGHT contain URLs
+          find . -type f \( -name "*.md" -o -name "*.txt" -o -name "*.html" -o -name "*.json" -o -name "*.js" -o -name "*.yml" \) -not -path "*/.git/*" -not -path "*/node_modules/*" | head -20
+          echo "---"
+          # Search for ANY reclaimtaxcredits URLs
+          grep -r "reclaimtaxcredits" . --include="*.{md,txt,html,json,js,yaml,yml}" || echo "No reclaimtaxcredits URLs found"
+          echo "---"
+          # Search for payroll specifically
+          grep -r "payroll.reclaimtaxcredits.com" . --include="*.{md,txt,html,json,js,yaml,yml}" || echo "No payroll.reclaimtaxcredits.com found"
+          echo "=== END SCAN ==="
+
+      - name: 🔧 Replace URLs (SIMPLE VERSION)
+        run: |
+          # Replace payroll URL - NO fancy globs, just works
+          grep -r "https://payroll.reclaimtaxcredits.com" . || true
+          sed -i 's|https://payroll.reclaimtaxcredits.com|https://reclaimtaxcredits.com|g' $(grep -rl "https://payroll.reclaimtaxcredits.com" . 2>/dev/null || true)
+          sed -i 's|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g' $(grep -rl "https://reclaim-tax-credits.vercel.app" . 2>/dev/null || true)
           
-          # Replace payroll → new domain  
-          grep -r --null -l --include="*.{md,html,htm,txt,json,yml,yaml,js,ts,css,xml}" \
-            'https://payroll.reclaimtaxcredits.com' . 2>/dev/null | \
-            xargs -r -0 sed -i 's|https://payroll.reclaimtaxcredits.com|https://reclaimtaxcredits.com|g'
+          echo "=== AFTER REPLACEMENT ==="
+          grep -r "reclaimtaxcredits" . --include="*.{md,txt,html,json,js,yaml,yml}" || echo "No URLs after replacement"
 
       - name: Commit changes (if any)
         run: |
@@ -33,9 +44,9 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
-            git commit -m "chore: replace payroll.reclaimtaxcredits.com → reclaimtaxcredits.com [skip ci]"
+            git commit -m "chore: replace payroll → reclaimtaxcredits.com [skip ci]"
             git push
-            echo "✅ URLs replaced and committed!"
+            echo "✅ URLs REPLACED AND PUSHED!"
           else
-            echo "ℹ️ No matching URLs found"
+            echo "ℹ️ No matching URLs found to replace"
           fi
