@@ -1,28 +1,26 @@
 name: Replace Vercel URLs with New Domain
-
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   replace-urls:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v5  # Change v4 → v5 (Node 24 compatible)
+      - uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Replace URLs in all documents
-        uses: jacobtomlinson/gha-find-replace@v1
-        with:
-          find: "https://reclaim-tax-credits.vercel.app"
-          replace: "https://reclaimtaxcredits.com"
-          include: "**/*.{md,html,htm,txt,json,yml,yaml,js,ts,css,xml}"
-          exclude: ".git/**,*.png,*.jpg,*.gif,*.zip,node_modules/**"
+      - name: Replace URLs with sed
+        run: |
+          find . -type f \
+            \( -name "*.md" -o -name "*.html" -o -name "*.htm" -o -name "*.txt" \
+               -o -name "*.json" -o -name "*.yml" -o -name "*.yaml" \
+               -o -name "*.js" -o -name "*.ts" -o -name "*.css" -o -name "*.xml" \) \
+            -not -path "./.git/*" \
+            -not -path "*/node_modules/*" \
+            -exec sed -i 's|https://reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g' {} +
 
       - name: Commit and push changes (if any)
         run: |
