@@ -1,7 +1,6 @@
-name: Replace Payroll URLs
+name: Bulk URL Replace (Payroll → Main)
 on: workflow_dispatch
-permissions: 
-  contents: write   # ← ONLY THIS ONE
+permissions: {contents: write}
 
 jobs:
   replace:
@@ -11,24 +10,33 @@ jobs:
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: |
-          echo "=== BEFORE ==="
-          grep -nri "reclaimtaxcredits\|vercel" . || echo "No URLs found"
-          
-          find . -type f -not -path "*/.git/*" -exec sed -i 's|https://[^ ]*reclaim-tax-credits.vercel.app|https://reclaimtaxcredits.com|g; s|https://payroll.reclaimtaxcredits.com|https://reclaimtaxcredits.com|g' {} +
-          
-          echo "=== AFTER ==="
-          git status
-          grep -nri "reclaimtaxcredits" . || echo "No URLs after"
+      - name: Replace Payroll URLs
+        run: |
+          # Replace BOTH old URLs with payroll.reclaimtaxcredits.com
+          find . -type f \( -name "*.json" -o -name "*.md" -o -name "*.html" -o -name "*.txt" \) \
+            -not -path "*/.git/*" \
+            -exec sed -i \
+              -e 's|reclaim-tax-credits.vercel.app|payroll.reclaimtaxcredits.com|g' \
+              -e 's|https://payroll.reclaimtaxcredits.com/s|https://payroll.reclaimtaxcredits.com|g' \
+              {} +
 
-      - run: |
-          if git diff --quiet; then
-            echo "No changes"
+      - name: Verify changes
+        run: |
+          echo "Files BEFORE:"
+          grep -l "reclaim-tax-credits.vercel.app" **/*.json **/*.md || echo "None"
+          echo "Files AFTER:"
+          grep -l "payroll.reclaimtaxcredits.com" **/*.json **/*.md || echo "None"
+          git status
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --staged --quiet; then
+            echo "❌ No changes detected"
           else
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add .
-            git commit -m "fix: update URLs [skip ci]"
+            git commit -m "chore: replace URLs → payroll.reclaimtaxcredits.com [skip ci]"
             git push
-            echo "✅ DONE"
+            echo "✅ SUCCESS - All files updated!"
           fi
