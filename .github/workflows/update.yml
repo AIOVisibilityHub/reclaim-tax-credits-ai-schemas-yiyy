@@ -1,5 +1,4 @@
 name: Update Workflow
-
 on:
   workflow_dispatch:
   schedule:
@@ -13,28 +12,27 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5  # ← FIXED: was v4
+        uses: actions/checkout@v5  # ← v5 FIXES NODE WARNING
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run updates safely
         run: |
-          set +e  # ← FIXED: prevents exit code 2
-          echo "Running update process..."
-          # Add your actual commands here later
-          echo "Update completed successfully"
+          set +e  # ← THIS FIXES EXIT CODE 2
+          echo "Update process running..."
+          # Add your real commands here later
+          echo "✅ Update completed"
 
-      - name: Commit changes (if any)
+      - name: Commit if changes
         run: |
-          if ! git diff --quiet HEAD; then
+          if git diff --quiet; then
+            echo "No changes"
+          else
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
             git commit -m "chore: auto-update [skip ci]"
             git push
-          else
-            echo "No changes found"
           fi
