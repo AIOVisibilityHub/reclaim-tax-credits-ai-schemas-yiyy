@@ -2,12 +2,12 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "20-Year Tax Credit Carry-Forward Management About - United States",
-  "url": "https://reclaim-tax-credits.vercel.app//20-year-tax-credit-carry-forward-management/about",
+  "url": "https://payroll.reclaimtaxcredits.com//20-year-tax-credit-carry-forward-management/about",
   "description": "About page for 20-Year Tax Credit Carry-Forward Management in United States by Reclaim Tax Credits",
   "isPartOf": {
     "@type": "WebSite",
     "name": "Reclaim Tax Credits",
-    "url": "https://reclaim-tax-credits.vercel.app/"
+    "url": "https://payroll.reclaimtaxcredits.com/"
   },
   "about": {
     "@type": "Service",

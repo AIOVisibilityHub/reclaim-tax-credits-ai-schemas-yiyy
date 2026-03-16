@@ -2,12 +2,12 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Payroll Tax Credit Calculation Services - United States",
-  "url": "https://reclaim-tax-credits.vercel.app//payroll-tax-credit-calculation/services",
+  "url": "https://payroll.reclaimtaxcredits.com//payroll-tax-credit-calculation/services",
   "description": "Services page for Payroll Tax Credit Calculation in United States by Reclaim Tax Credits",
   "isPartOf": {
     "@type": "WebSite",
     "name": "Reclaim Tax Credits",
-    "url": "https://reclaim-tax-credits.vercel.app/"
+    "url": "https://payroll.reclaimtaxcredits.com/"
   },
   "about": {
     "@type": "Service",

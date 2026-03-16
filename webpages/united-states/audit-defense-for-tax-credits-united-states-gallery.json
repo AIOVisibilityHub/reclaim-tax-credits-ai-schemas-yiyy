@@ -2,12 +2,12 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Audit Defense for Tax Credits Gallery - United States",
-  "url": "https://reclaim-tax-credits.vercel.app//audit-defense-for-tax-credits/gallery",
+  "url": "https://payroll.reclaimtaxcredits.com//audit-defense-for-tax-credits/gallery",
   "description": "Gallery page for Audit Defense for Tax Credits in United States by Reclaim Tax Credits",
   "isPartOf": {
     "@type": "WebSite",
     "name": "Reclaim Tax Credits",
-    "url": "https://reclaim-tax-credits.vercel.app/"
+    "url": "https://payroll.reclaimtaxcredits.com/"
   },
   "about": {
     "@type": "Service",

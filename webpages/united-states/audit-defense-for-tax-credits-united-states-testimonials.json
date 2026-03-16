@@ -2,12 +2,12 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Audit Defense for Tax Credits Testimonials - United States",
-  "url": "https://reclaim-tax-credits.vercel.app//audit-defense-for-tax-credits/testimonials",
+  "url": "https://payroll.reclaimtaxcredits.com//audit-defense-for-tax-credits/testimonials",
   "description": "Testimonials page for Audit Defense for Tax Credits in United States by Reclaim Tax Credits",
   "isPartOf": {
     "@type": "WebSite",
     "name": "Reclaim Tax Credits",
-    "url": "https://reclaim-tax-credits.vercel.app/"
+    "url": "https://payroll.reclaimtaxcredits.com/"
   },
   "about": {
     "@type": "Service",

@@ -2,12 +2,12 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "FICA Tip Credit Recovery Contact - United States",
-  "url": "https://reclaim-tax-credits.vercel.app//fica-tip-credit-recovery/contact",
+  "url": "https://payroll.reclaimtaxcredits.com//fica-tip-credit-recovery/contact",
   "description": "Contact page for FICA Tip Credit Recovery in United States by Reclaim Tax Credits",
   "isPartOf": {
     "@type": "WebSite",
     "name": "Reclaim Tax Credits",
-    "url": "https://reclaim-tax-credits.vercel.app/"
+    "url": "https://payroll.reclaimtaxcredits.com/"
   },
   "about": {
     "@type": "Service",

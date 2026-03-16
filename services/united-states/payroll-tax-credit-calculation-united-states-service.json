@@ -5,7 +5,7 @@
   "provider": {
     "@type": "LocalBusiness",
     "name": "Reclaim Tax Credits",
-    "url": "https://reclaim-tax-credits.vercel.app/"
+    "url": "https://payroll.reclaimtaxcredits.com/"
   },
   "areaServed": {
     "@type": "City",

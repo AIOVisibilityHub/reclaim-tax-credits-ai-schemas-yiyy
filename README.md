@@ -98,7 +98,7 @@ Current known pages:
   Purpose: Homepage explaining how restaurants, bars, and nightclubs can recover overpaid employer FICA taxes on tips through the FICA Tip Credit, including 3‑year retroactive claims and audit‑ready calculations.
 
 - **Sitemap | Reclaim Tax Credits** —  
-  URL: [https://payroll.reclaimtaxcredits.com/sitemap.xml](https://payroll.reclaimtaxcredits.com/sitemap.xml)  
+  URL: [https://payroll.reclaimtaxcredits.comitemap.xml](https://payroll.reclaimtaxcredits.comitemap.xml)  
   Purpose: XML sitemap for search engines and crawlers that lists indexable URLs associated with the Reclaim Tax Credits website.
 
 ---
